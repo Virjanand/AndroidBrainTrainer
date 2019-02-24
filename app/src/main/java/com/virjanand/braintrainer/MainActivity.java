@@ -17,8 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void startGame(View view) {
         countDownTimer.start();
-
-        view.setVisibility(View.INVISIBLE);
+        startGameButton.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         countDown = (TextView) findViewById(R.id.timerTextView);
         startGameButton = (Button) findViewById(R.id.startGameButton);
+        final TextView doneText = (TextView) findViewById(R.id.doneTextView);
 
         countDownTimer = new CountDownTimer(GAME_TIME_IN_MILLISEC, SECOND) {
             public void onTick(long milliSecondsUntilDone) {
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
             public void onFinish() {
                 updateCountDown(0);
-                startGameButton.setVisibility(View.VISIBLE);
+                doneText.setVisibility(View.VISIBLE);
             }
         };
     }
