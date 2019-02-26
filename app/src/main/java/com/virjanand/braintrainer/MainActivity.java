@@ -14,10 +14,18 @@ public class MainActivity extends AppCompatActivity {
     private TextView countDown;
     private CountDownTimer countDownTimer;
     private Button startGameButton;
+    private Button playAgainButton;
+    private TextView doneText;
 
     public void startGame(View view) {
         countDownTimer.start();
         startGameButton.setVisibility(View.INVISIBLE);
+    }
+
+    public void playAgain(View view) {
+        countDownTimer.start();
+        playAgainButton.setVisibility(View.INVISIBLE);
+        doneText.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -27,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         countDown = (TextView) findViewById(R.id.timerTextView);
         startGameButton = (Button) findViewById(R.id.startGameButton);
-        final TextView doneText = (TextView) findViewById(R.id.doneTextView);
+        playAgainButton = (Button) findViewById(R.id.playAgainButton);
+        doneText = (TextView) findViewById(R.id.doneTextView);
 
         countDownTimer = new CountDownTimer(GAME_TIME_IN_MILLISEC, SECOND) {
             public void onTick(long milliSecondsUntilDone) {
@@ -37,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 updateCountDown(0);
                 doneText.setVisibility(View.VISIBLE);
+                playAgainButton.setVisibility(View.VISIBLE);
             }
         };
     }
