@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final int GAME_TIME_IN_MILLISEC = 10000;
@@ -20,6 +22,16 @@ public class MainActivity extends AppCompatActivity {
     public void startGame(View view) {
         countDownTimer.start();
         startGameButton.setVisibility(View.INVISIBLE);
+        generateSum();
+    }
+
+    private void generateSum() {
+        Random random = new Random();
+        int augend = random.nextInt(50) + 1;
+        int addend = random.nextInt(50) + 1;
+
+        TextView sumTextView = (TextView) findViewById(R.id.sumTextView);
+        sumTextView.setText(augend + " + " + addend);
     }
 
     public void playAgain(View view) {
