@@ -11,13 +11,17 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+
     public static final int GAME_TIME_IN_MILLISEC = 10000;
     public static final int SECOND = 1000;
+
     private TextView countDown;
     private CountDownTimer countDownTimer;
     private Button startGameButton;
     private Button playAgainButton;
     private TextView doneText;
+
+    private int correctAnswer;
 
     public void startGame(View view) {
         countDownTimer.start();
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Random random = new Random();
         int augend = random.nextInt(50) + 1;
         int addend = random.nextInt(50) + 1;
+        correctAnswer = augend + addend;
 
         TextView sumTextView = (TextView) findViewById(R.id.sumTextView);
         sumTextView.setText(augend + " + " + addend);
