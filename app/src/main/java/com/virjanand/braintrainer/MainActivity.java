@@ -23,12 +23,23 @@ public class MainActivity extends AppCompatActivity {
     private TextView doneText;
 
     private int correctAnswer;
+    private Random random;
+    private int wrongAnswer3;
+    private int wrongAnswer2;
+    private int wrongAnswer1;
 
     public void startGame(View view) {
         countDownTimer.start();
         startGameButton.setVisibility(View.INVISIBLE);
         generateSum();
+        generateAnswers();
         showGrid();
+    }
+
+    private void generateAnswers() {
+        wrongAnswer1 = random.nextInt(100) + 1;
+        wrongAnswer2 = random.nextInt(100) + 1;
+        wrongAnswer3 = random.nextInt(100) + 1;
     }
 
     private void showGrid() {
@@ -37,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void generateSum() {
-        Random random = new Random();
+        random = new Random();
         int augend = random.nextInt(50) + 1;
         int addend = random.nextInt(50) + 1;
         correctAnswer = augend + addend;
