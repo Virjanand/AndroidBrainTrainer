@@ -110,7 +110,11 @@
             android:id="@+id/button7"
             android:layout_width="200dp"
             android:layout_height="154dp"
-            android:text="Button" />
+            android:background="@android:color/holo_red_light"
+            android:onClick="submitAnswer"
+            android:tag="answer1"
+            android:text="13"
+            android:textSize="100sp" />
 
         <Button
             android:id="@+id/button9"
@@ -118,7 +122,11 @@
             android:layout_height="175dp"
             android:layout_row="7"
             android:layout_column="0"
-            android:text="Button" />
+            android:background="@android:color/holo_blue_dark"
+            android:onClick="submitAnswer"
+            android:tag="answer2"
+            android:text="6"
+            android:textSize="100sp" />
 
         <Button
             android:id="@+id/button10"
@@ -126,7 +134,11 @@
             android:layout_height="154dp"
             android:layout_row="0"
             android:layout_column="8"
-            android:text="Button" />
+            android:background="@android:color/holo_purple"
+            android:onClick="submitAnswer"
+            android:tag="answer3"
+            android:text="18"
+            android:textSize="100sp" />
 
         <Button
             android:id="@+id/button11"
@@ -134,6 +146,10 @@
             android:layout_height="170dp"
             android:layout_row="7"
             android:layout_column="8"
-            android:text="Button" />
+            android:background="@android:color/holo_green_dark"
+            android:onClick="submitAnswer"
+            android:tag="answer4"
+            android:text="12"
+            android:textSize="100sp" />
     </GridLayout>
 </android.support.constraint.ConstraintLayout>
