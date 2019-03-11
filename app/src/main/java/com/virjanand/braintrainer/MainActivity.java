@@ -3,11 +3,14 @@ package com.virjanand.braintrainer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,9 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int correctAnswer;
     private Random random;
-    private int wrongAnswer3;
-    private int wrongAnswer2;
-    private int wrongAnswer1;
+    private List<Integer> answers;
 
     public void startGame(View view) {
         countDownTimer.start();
@@ -37,14 +38,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void generateAnswers() {
-        wrongAnswer1 = random.nextInt(100) + 1;
-        wrongAnswer2 = random.nextInt(100) + 1;
-        wrongAnswer3 = random.nextInt(100) + 1;
+        int wrongAnswer1 = random.nextInt(100) + 1;
+        answers.add(wrongAnswer1);
+        int wrongAnswer2 = random.nextInt(100) + 1;
+        answers.add(wrongAnswer2);
+        int wrongAnswer3 = random.nextInt(100) + 1;
+        answers.add(wrongAnswer3);
     }
 
     private void showGrid() {
         GridLayout grid = (GridLayout) findViewById(R.id.answerGridLayout);
         grid.setVisibility(View.VISIBLE);
+        Collections.shuffle(answers);
+        Log.i("Ansers: ", answers.toString());
     }
 
     private void generateSum() {
@@ -52,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         int augend = random.nextInt(50) + 1;
         int addend = random.nextInt(50) + 1;
         correctAnswer = augend + addend;
+        answers.add(correctAnswer);
 
         TextView sumTextView = (TextView) findViewById(R.id.sumTextView);
         sumTextView.setText(augend + " + " + addend);
