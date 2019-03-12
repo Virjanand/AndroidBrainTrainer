@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -30,8 +31,24 @@ public class MainActivity extends AppCompatActivity {
     private List<Integer> answers;
 
     public void startGame(View view) {
-        countDownTimer.start();
         startGameButton.setVisibility(View.INVISIBLE);
+        countDownTimer.start();
+        setupGame();
+    }
+
+    public void submitAnswer(View view) {
+        Log.i("Ansers: ", answers.toString());
+    }
+
+    public void playAgain(View view) {
+        countDownTimer.start();
+        playAgainButton.setVisibility(View.INVISIBLE);
+        doneText.setVisibility(View.INVISIBLE);
+        setupGame();
+    }
+
+    private void setupGame() {
+        answers = new ArrayList<>();
         generateSum();
         generateAnswers();
         showGrid();
@@ -50,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         GridLayout grid = (GridLayout) findViewById(R.id.answerGridLayout);
         grid.setVisibility(View.VISIBLE);
         Collections.shuffle(answers);
-        Log.i("Ansers: ", answers.toString());
     }
 
     private void generateSum() {
@@ -62,12 +78,6 @@ public class MainActivity extends AppCompatActivity {
 
         TextView sumTextView = (TextView) findViewById(R.id.sumTextView);
         sumTextView.setText(augend + " + " + addend);
-    }
-
-    public void playAgain(View view) {
-        countDownTimer.start();
-        playAgainButton.setVisibility(View.INVISIBLE);
-        doneText.setVisibility(View.INVISIBLE);
     }
 
     @Override
