@@ -67,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
         GridLayout grid = (GridLayout) findViewById(R.id.answerGridLayout);
         grid.setVisibility(View.VISIBLE);
         Collections.shuffle(answers);
+        Button answerButton1 = (Button) findViewById(R.id.answerButton1);
+        Button answerButton2 = (Button) findViewById(R.id.answerButton2);
+        Button answerButton3 = (Button) findViewById(R.id.answerButton3);
+        Button answerButton4 = (Button) findViewById(R.id.answerButton4);
+        answerButton1.setText(answers.get(0).toString());
+        answerButton2.setText(answers.get(1).toString());
+        answerButton3.setText(answers.get(2).toString());
+        answerButton4.setText(answers.get(3).toString());
     }
 
     private void generateSum() {
