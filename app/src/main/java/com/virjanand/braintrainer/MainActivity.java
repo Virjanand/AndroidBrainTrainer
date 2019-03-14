@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitAnswer(View view) {
-        Log.i("Ansers: ", answers.toString());
+        Log.i("Anser clicked: ", "" + view.getTag());
     }
 
     public void playAgain(View view) {
@@ -61,12 +61,13 @@ public class MainActivity extends AppCompatActivity {
         answers.add(wrongAnswer2);
         int wrongAnswer3 = random.nextInt(100) + 1;
         answers.add(wrongAnswer3);
+        Collections.shuffle(answers);
     }
 
     private void showGrid() {
         GridLayout grid = (GridLayout) findViewById(R.id.answerGridLayout);
         grid.setVisibility(View.VISIBLE);
-        Collections.shuffle(answers);
+
         Button answerButton1 = (Button) findViewById(R.id.answerButton1);
         Button answerButton2 = (Button) findViewById(R.id.answerButton2);
         Button answerButton3 = (Button) findViewById(R.id.answerButton3);
