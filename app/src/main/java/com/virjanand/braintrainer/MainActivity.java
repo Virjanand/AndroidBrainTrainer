@@ -37,7 +37,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitAnswer(View view) {
-        Log.i("Anser clicked: ", "" + view.getTag());
+        int answerSubmitted = Integer.parseInt(((Button) view).getText().toString());
+        if (answerSubmitted == correctAnswer) {
+            Log.i("Answer: ", "Correct!");
+        } else {
+            Log.i("Answer: ", "Wrong!");
+        }
+        setupGame();
     }
 
     public void playAgain(View view) {
