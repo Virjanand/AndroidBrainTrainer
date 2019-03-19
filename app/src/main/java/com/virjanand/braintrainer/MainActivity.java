@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
 
-    public static final int GAME_TIME_IN_MILLISEC = 10000;
+    public static final int GAME_TIME_IN_MILLISEC = 30000;
     public static final int SECOND = 1000;
 
     private TextView countDown;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private int correctAnswer;
     private Random random;
     private List<Integer> answers;
+    private int totalNumberQuestions = 0;
+    private int numberCorrect = 0;
 
     public void startGame(View view) {
         startGameButton.setVisibility(View.INVISIBLE);
@@ -38,11 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitAnswer(View view) {
         int answerSubmitted = Integer.parseInt(((Button) view).getText().toString());
-        if (answerSubmitted == correctAnswer) {
-            Log.i("Answer: ", "Correct!");
-        } else {
-            Log.i("Answer: ", "Wrong!");
-        }
+        if (answerSubmitted == correctAnswer)
+            numberCorrect++;
+        totalNumberQuestions++;
         setupGame();
     }
 
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         playAgainButton.setVisibility(View.INVISIBLE);
         doneText.setVisibility(View.INVISIBLE);
         setupGame();
+        totalNumberQuestions = 0;
+        numberCorrect = 0;
     }
 
     private void setupGame() {
@@ -58,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
         generateSum();
         generateAnswers();
         showGrid();
+    }
+
+    private void showScore() {
+        TextView scoreTextView = (TextView) findViewById(R.id.scoreTextView);
+        scoreTextView.setText(String.format("%d/%d", numberCorrect, totalNumberQuestions));
     }
 
     private void generateAnswers() {
@@ -82,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         answerButton2.setText(answers.get(1).toString());
         answerButton3.setText(answers.get(2).toString());
         answerButton4.setText(answers.get(3).toString());
+        showScore();
     }
 
     private void generateSum() {
