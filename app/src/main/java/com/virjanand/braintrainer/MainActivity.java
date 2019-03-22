@@ -3,13 +3,10 @@ package com.virjanand.braintrainer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,31 +30,33 @@ public class MainActivity extends AppCompatActivity {
     private List<Integer> answers;
     private int totalNumberQuestions = 0;
     private int numberCorrect = 0;
+    private boolean isGameRunning;
 
     public void startGame(View view) {
         startGameButton.setVisibility(View.INVISIBLE);
         countDownTimer.start();
-        setupGame();
+        nextQuestion();
+        isGameRunning = true;
     }
 
     public void submitAnswer(View view) {
+        if (isGameRunning) {
         int answerSubmitted = Integer.parseInt(((Button) view).getText().toString());
-        if (answerSubmitted == correctAnswer)
-            numberCorrect++;
-        totalNumberQuestions++;
-        setupGame();
+            if (answerSubmitted == correctAnswer)
+                numberCorrect++;
+            totalNumberQuestions++;
+        nextQuestion();
+        }
     }
 
     public void playAgain(View view) {
-        countDownTimer.start();
-        playAgainButton.setVisibility(View.INVISIBLE);
+        startGame(view);
         doneText.setVisibility(View.INVISIBLE);
-        setupGame();
         totalNumberQuestions = 0;
         numberCorrect = 0;
     }
 
-    private void setupGame() {
+    private void nextQuestion() {
         answers = new ArrayList<>();
         generateSum();
         generateAnswers();
@@ -124,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 updateCountDown(0);
                 doneText.setVisibility(View.VISIBLE);
                 playAgainButton.setVisibility(View.VISIBLE);
+                isGameRunning = false;
             }
         };
     }
