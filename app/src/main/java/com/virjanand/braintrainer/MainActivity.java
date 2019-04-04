@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitAnswer(View view) {
         if (isGameRunning) {
-        int answerSubmitted = Integer.parseInt(((Button) view).getText().toString());
+            int answerSubmitted = Integer.parseInt(((Button) view).getText().toString());
             if (answerSubmitted == correctAnswer)
                 numberCorrect++;
             totalNumberQuestions++;
-        nextQuestion();
+            nextQuestion();
         }
     }
 
